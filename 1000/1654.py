@@ -27,3 +27,4 @@ def result(rope,n,left,right):
         return result(rope,n,tmp+1,right)
 
 print(result(rope,n,0,max(rope)))
+print(1)
