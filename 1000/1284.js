@@ -23,5 +23,3 @@ const path = process.platform === 'linux' ? '/dev/stdin' : 'text.txt';
   }
   }
   
-
-  
