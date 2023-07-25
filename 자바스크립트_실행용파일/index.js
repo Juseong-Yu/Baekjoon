@@ -4,28 +4,23 @@ const { parse } = require('path');
 const path = process.platform === 'linux' ? '/dev/stdin' : 'text.txt';
 let input = fs.readFileSync(path).toString().split('\n');
 
-const N = parseInt(input[0]);
-let arr = []
-for (let i = 1; i <= N; i++){
-  arr.push(parseFloat(input[i]));
+let arr = input.map(ele => parseInt(ele));
+const overall = arr.reduce((acc, cur)=> acc+cur);
+arr.sort((a,b) => a-b);
+
+let notlittle = []
+for(let i = 1; i < arr.length; i++){
+  for(let n = 0; n < i; n++){
+    if(overall - arr[i] -arr[n] === 100){
+      notlittle = [arr[i],arr[n]];
+    }
+  }
+
 }
-
-let dp = [arr[0]];
-
-for (let j = 1; j < arr.length; j++){
-  let max = arr[j]
-  if (dp[j-1] * arr[j] > arr[j]){
-    dp.push(Math.round(dp[j-1] *arr[j]*1000)/1000);
-  }else{
-    dp.push(arr[j])
+let little = []
+for(let k = 0; k < arr.length; k++){
+  if(!(notlittle.includes(arr[k]))){
+    little.push(arr[k])
   }
 }
-
-let result = Math.max(...dp);
-
-result = result * 1000
-
-result = Math.round(result)
-
-result = result / 1000
-console.log(result.toFixed(3))
+console.log(little[0]+'\n'+little[1]+'\n'+little[2]+'\n'+little[3]+'\n'+little[4]+'\n'+little[5]+'\n'+little[6])
