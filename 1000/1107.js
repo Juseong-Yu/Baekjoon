@@ -25,7 +25,7 @@ while(true){
       flag = true
     }
   }
-  if(flag === false){
+  if(flag === false || result1 < push + plusarr.length){
     result2 = push + minusarr.length;
     break
   }else{
