@@ -2,51 +2,50 @@ const { count } = require('console');
 const fs = require('fs');
 const { parse } = require('path');
 const path = process.platform === 'linux' ? '/dev/stdin' : 'text.txt';
-let input = fs.readFileSync(path).toString().split(' ');
-
-// const N = parseInt(input[0]);
-// const M = parseInt(input[1]);
-
-// function NM(n,m,used,arr){
-//   if(m == 1){
-//     for(let i = 1; i <= n; i++){
-//       if(!used.includes(i)){
-//         arr.push([...used,i])
-//       }
-//     }
-//     return arr
-//   }else{
-//     let result = []
-//     for(let j = 1; j <= n; j++){
-//       if(!used.includes(j)){
-//         result = [...NM(n,m-1,[...used,j],arr)];
-//       }
-//     }
-//     return result
-//   }
-  
-// }
-
-// let done = NM(N,M,[],[]);
-
-// for (let k = 0; k < done.length; k++){
-//   console.log(...done[k])
-// }
+let input = fs.readFileSync(path).toString().split('\n');
 
 const N = parseInt(input[0]);
 const M = parseInt(input[1]);
+const broken = input[2].split(' ').map((ele)=>parseInt(ele));
 
-function NM(n, m, used, result) {
-  if (m === 0) {
-    console.log(...used);
-    return;
+const result1 = Math.abs(N - 100);
+let result2= 0;
+let result3 = 0;
+let push = 0
+while(true){
+  let flag = false;
+  var minus = N - push;
+  if (minus < 0){
+    result2 = Infinity
+    break
   }
-
-  for (let j = 1; j <= n; j++) {
-    if (!used.includes(j)) {
-      NM(n, m - 1, [...used, j], result);
+  let minusarr = minus.toString().split('').map((ele) => parseInt(ele));
+  for (let i = 0; i < minusarr.length; i++){
+    if(broken.includes(minusarr[i])){
+      flag = true
     }
   }
+  if(flag === false){
+    result2 = push + minusarr.length;
+    break
+  }else{
+    push +=1
+  }
 }
-
-NM(N, M, [], []);
+push = 0
+while(true){
+  let flag = false;
+  var plus = N + push;
+  let plusarr = plus.toString().split('').map((ele) => parseInt(ele));
+  for (let i = 0; i < plusarr.length; i++){
+    if(broken.includes(plusarr[i])){
+      flag = true
+    }
+  }
+  if(flag === false || result1 < push + plusarr.length){
+    result3 = push + plusarr.length;
+    break
+  }
+  push +=1
+}
+console.log(Math.min(result1,result2,result3))
