@@ -1,51 +1,60 @@
-const { count } = require('console');
 const fs = require('fs');
-const { parse } = require('path');
 const path = process.platform === 'linux' ? '/dev/stdin' : 'text.txt';
 let input = fs.readFileSync(path).toString().split('\n');
 
 const N = parseInt(input[0]);
-const M = parseInt(input[1]);
-const broken = input[2].split(' ').map((ele)=>parseInt(ele));
+let tree = [];
+for (let i = 1; i <= N; i++) {
+  tree.push(input[i].split(' '));
+}
 
-const result1 = Math.abs(N - 100);
-let result2= 0;
-let result3 = 0;
-let push = 0
-while(true){
-  let flag = false;
-  var minus = N - push;
-  if (minus < 0){
-    result2 = Infinity
-    break
-  }
-  let minusarr = minus.toString().split('').map((ele) => parseInt(ele));
-  for (let i = 0; i < minusarr.length; i++){
-    if(broken.includes(minusarr[i])){
-      flag = true
+function findleftright(tree, idx) {
+  let leftidx = null;
+  let rightidx = null;
+  for (let j = 0; j < N; j++) {
+    if (tree[j][0] === tree[idx][1]) {
+      leftidx = j;
+    }
+    if (tree[j][0] === tree[idx][2]) {
+      rightidx = j;
     }
   }
-  if(flag === false){
-    result2 = push + minusarr.length;
-    break
-  }else{
-    push +=1
-  }
+  return [leftidx, rightidx];
 }
-push = 0
-while(true){
-  let flag = false;
-  var plus = N + push;
-  let plusarr = plus.toString().split('').map((ele) => parseInt(ele));
-  for (let i = 0; i < plusarr.length; i++){
-    if(broken.includes(plusarr[i])){
-      flag = true
-    }
+
+function preorder(tree, idx) {
+  if (idx === null) {
+    return '';
   }
-  if(flag === false || result1 < push + plusarr.length){
-    result3 = push + plusarr.length;
-    break
-  }
-  push +=1
+  const currentNode = tree[idx][0];
+  const leftidx = findleftright(tree, idx)[0];
+  const rightidx = findleftright(tree, idx)[1];
+  return currentNode + preorder(tree, leftidx) + preorder(tree, rightidx);
 }
-console.log(Math.min(result1,result2,result3))
+
+function inorder(tree, idx) {
+  if (idx === null) {
+    return '';
+  }
+  const currentNode = tree[idx][0];
+  const leftidx = findleftright(tree, idx)[0];
+  const rightidx = findleftright(tree, idx)[1];
+  return inorder(tree, leftidx) + currentNode + inorder(tree, rightidx);
+}
+
+function postorder(tree, idx) {
+  if (idx === null) {
+    return '';
+  }
+  const currentNode = tree[idx][0];
+  const leftidx = findleftright(tree, idx)[0];
+  const rightidx = findleftright(tree, idx)[1];
+  return postorder(tree, leftidx) + postorder(tree, rightidx) + currentNode;
+}
+
+const preorderR = preorder(tree, 0);
+const inorderR = inorder(tree, 0);
+const postorderR = postorder(tree, 0);
+
+const result = [preorderR, inorderR, postorderR].join('\n');
+console.log(result);
