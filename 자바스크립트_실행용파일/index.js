@@ -1,19 +1,14 @@
 const fs = require('fs');
 const path = process.platform === 'linux' ? '/dev/stdin' : 'text.txt';
-let input = fs.readFileSync(path).toString().split(' ')
+let input = fs.readFileSync(path).toString()
 
-let A = Math.min(...input)
-let B = Math.max(...input)
+let N = parseInt(input);
+let Nlength = input.length;
+let result = 0;
+while(Nlength > 0){
+  result += (N - Math.pow(10,Nlength-1)+1) * Nlength;
+  N = Math.pow(10,Nlength-1)-1;
+  Nlength-- ;
+}
 
-let Acol = Math.ceil(A/4);
-let Bcol = Math.ceil(B/4);
-let Arow = A % 4;
-if(Arow === 0){
-  Arow = 4
-}
-let Brow = B % 4;
-if(Brow === 0){
-  Brow = 4
-}
-let result = Bcol-Acol + Math.abs(Arow-Brow)
-console.log(result)
+console.log(String(result));
