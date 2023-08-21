@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = process.platform === 'linux' ? '/dev/stdin' : 'text.txt';
-let input = fs.readFileSync(path).toString();
+let input = fs.readFileSync(path).toString().trim();
 let xx = '';
 let x = '';
 let w = '+W';
