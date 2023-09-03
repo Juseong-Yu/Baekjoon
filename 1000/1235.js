@@ -14,7 +14,6 @@ while(true){
     }else{
       arr.push(input[i].slice(-result))
     }
-    console.log(arr)
   }
   if (result === input[1].length || arr.length === N){
     break
