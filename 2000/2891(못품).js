@@ -16,4 +16,8 @@ for(let i = 0; i < filterS.length; i++){
     filterR.splice(idx,1)
   }
 }
-console.log(parseInt(filterS.length - bor.length))
+if(filterS.length - bor.length >= 0){
+  console.log(filterS.length - bor.length)
+}else{
+  console.log(0)
+}
