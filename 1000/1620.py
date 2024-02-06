@@ -8,7 +8,6 @@ for i in range(M):
   guide[newP]= i+1
 key = guide.keys()
 key = list(key)
-print(guide, key)
 for j in range(N):
   Q = input().strip()
   if Q.isdecimal( ) == True:
