@@ -2,9 +2,9 @@ T = int(input())
 
 def rotate_270(box):
     new_box = []
-    for x in range(2, -1, -1):
+    for x in range(N - 1, -1, -1):
         line = []
-        for y in range(0, 3):
+        for y in range(0, N):
             ele = box[y][x]
             line.append(ele)
         new_box.append(line)
