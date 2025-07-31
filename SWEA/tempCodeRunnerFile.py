@@ -32,4 +32,3 @@ for t in range(1, T + 1):
                     set3.add(sudoku[real_y][real_x])
             if len(set3) != 9:
                 result = 0
-    print(f'#{t} {result}')
