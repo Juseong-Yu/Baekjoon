@@ -1,30 +1,30 @@
 T = int(input())
 
-def rotate_270(box):
-    new_box = []
-    for x in range(2, -1, -1):
-        line = []
-        for y in range(0, 3):
-            ele = box[y][x]
-            line.append(ele)
-        new_box.append(line)
-    return new_box
+def brick_break(bricks, loc):
+    line = bricks[loc]
+    for idx, ele in enumerate(line):
+        if ele != 0 :
+            x_idx = idx
+            break
+    bomb_continue = [[x_idx, loc]]
+    while bomb_continue:
+        now = bomb_continue.pop()
+        x = now[0]
+        y = now[1]
+        val = bricks[y][x]
+        for bomb in range(val):
+            checks = [[x + bomb, y], [x - bomb, y], [x, y + bomb], [x , y - bomb]]
+            for check in checks:
+                try:
+                    check_data = bricks[check[1]][check[0]]
+                except:
+                    continue
+                else:
+                    if check_data == 1:
+                        bricks[check[1]][check[0]] = 0
+                    elif check_data > 1:
+                        bomb_continue.append([check[0], check[1]])
 
+        bricks[y][x] = 0
 
-
-for t in range(1, T + 1):
-    N = int(input())
-    box = []
-    for _ in range(N):
-        line = list(map(int, input().split()))
-        box.append(line)
-    r_270 = rotate_270(box)
-    r_180 = rotate_270(r_270)
-    r_90 = rotate_270(r_180)
-    print(f'#{t}')
-    for line in zip(r_90, r_180, r_270):
-        for ele3 in line:
-            for ele in ele3:
-                print(ele, end='')
-            print(' ', end='')
-        print()
+    brick_break(bricks, 1)
