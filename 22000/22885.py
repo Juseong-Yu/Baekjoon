@@ -1,24 +1,21 @@
 T = int(input())
 for t in range(1, T + 1):
     N = int(input())
-    lst = list(map(int, input().split()))
+    inlst = list(map(int, input().split()))
+    lst = [0]
+    lst.extend(inlst)
     costs = 0
-    for idx in range(N - 1):
-        ele = lst[idx]
-        i = idx + 1
+    for i in range(1, N):
+        ele = lst[i]
         if i == ele:
             cost = 1
             costs += cost
             j = i
         else:
-            for j in range(idx + 1, N):
+            for j in range(i + 1, N + 1):
                 if lst[j] == i:
-                    j += 1
-                    if j == N - 1:
-                        lst = lst[:idx] + list(reversed(lst[idx:]))
-                    else:
-                        lst = lst[:idx] + list(reversed(lst[idx: j])) + lst[j:]
-
+                    lst = lst[:i] + list(reversed(lst[i: j + 1])) + lst[j + 1:]
+                    break
             cost = j - i + 1
             costs += cost
     print(f'Case #{t}:',costs)
