@@ -29,7 +29,8 @@ for finger_c in crime:
             max_same_idx = [idx + 1]
         elif max_same == same:
             max_same_idx.append(idx + 1)
+    TC += 1
     print(f'Data Set {TC}:')
     print(*max_same_idx)
-    print()
-    TC += 1
+    if TC == k:
+        print()
