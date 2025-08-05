@@ -39,3 +39,15 @@ for t in range(1, T + 1):
 
     print(f'#{t} {flag}')
     
+                        
+                    
+#1 true
+#2 false
+#3 true
+#4 true
+#5 true
+#6 true
+#7 false
+#8 true
+#9 true
+#10 false
