@@ -17,9 +17,13 @@ for t in range(TC):
     edges = roads + worms
     INF = float('inf')
     dist = [INF] * (N + 1)
-    dist[1] = 0
+    dist[0] = 0
+
+    for n in range(1, N + 1):
+        edges.append([0, n, 0])
     flag = False
-    for _ in range(N - 1):
+    
+    for _ in range(N):
         for start, stop, cost in edges:
             if dist[start] != INF and dist[stop] > dist[start] + cost:
                 dist[stop] = dist[start] + cost
@@ -28,6 +32,7 @@ for t in range(TC):
         if dist[start] != INF and dist[stop] > dist[start] + cost:
             print('YES')
             flag = True
+            break
 
     if flag == False:
         print('NO')
