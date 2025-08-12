@@ -1,1 +1,1 @@
-help(dict)
+print
