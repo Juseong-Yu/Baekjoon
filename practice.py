@@ -1,3 +1,7 @@
-print(int('A', 16))
-print(ord('a'))
-print(chr(65))
+def factorial(N):
+	if N == 1:
+		return 1
+	else:
+		return N * factorial(N - 1)
+	
+print(factorial(4))
