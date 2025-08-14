@@ -25,7 +25,7 @@ for t in range(1, T + 1):
         blue_all.append(blue)
         red_all.append(red)
     min_result = float('inf')
-    
+
     for white in range(0, N - 2):
         white_chage = sum(white_all[0:white + 1])
         for blue in range(white + 1, N - 1):
