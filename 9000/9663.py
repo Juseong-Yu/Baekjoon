@@ -6,7 +6,6 @@ arr = [i for i in range(N)]
 def perm(idx, local_arr):
     global cnt
     
-    
     if len(local_arr) != 0:
         last = local_arr[-1]
         for check_idx, check in enumerate(local_arr[:-1]):
