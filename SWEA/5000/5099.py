@@ -1,10 +1,7 @@
-from collections import deque
-
 T = int(input())
 for t in range(1, T + 1):
     N, M = map(int, input().split())
     pizzas = list(map(int, input().split()))
-    pizzas = deque(pizzas)
     pizza_out = []
     oven = [0] * N
     check_out = [0] * N
