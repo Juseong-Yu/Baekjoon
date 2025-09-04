@@ -1,2 +1,1 @@
-import heapq
-help(heapq)
+print(set([1, 2, 3]) - set([1, 2]))
