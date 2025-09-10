@@ -18,7 +18,5 @@ def quad_tree(row_start, row_end, col_start, col_end):
         return '(' + leaf1 + leaf2 + leaf3 + leaf4 + ')'
     
 result = quad_tree(0, N - 1, 0, N - 1)
-if N == 1:
-    print(f'({result})')
-else:
-    print(result)
+
+print(result)
