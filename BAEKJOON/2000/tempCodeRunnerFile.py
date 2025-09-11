@@ -1,2 +1,1 @@
-plit([row[split + 1:] for row in paper[:split]])
-        paper3 = paper_
+print(zero_cnt)
