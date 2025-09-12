@@ -1,1 +1,2 @@
-print(zero_cnt)
+
+    else:
