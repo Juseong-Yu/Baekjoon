@@ -1,1 +1,2 @@
-len(result)-2
+else:
+            nexts = [now - 10, now - 1, now + 1, now * 2]
