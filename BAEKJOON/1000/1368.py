@@ -18,7 +18,7 @@ while pq:
     if MST[n]:
         continue
 
-    MST[n] = 1
+    MST[n] = True
     min_weight += w
 
     for next_node in range(N + 1):
