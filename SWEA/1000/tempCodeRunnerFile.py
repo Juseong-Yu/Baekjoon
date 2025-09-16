@@ -1,2 +1,1 @@
-
-            if min_cost > cost:
+s, e, cost
