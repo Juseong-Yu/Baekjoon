@@ -1,1 +1,2 @@
-print(help(set))
+
+            visited[player] = True
