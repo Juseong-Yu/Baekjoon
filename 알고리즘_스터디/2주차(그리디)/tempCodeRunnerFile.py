@@ -1,0 +1,1 @@
+not len(queue2)
