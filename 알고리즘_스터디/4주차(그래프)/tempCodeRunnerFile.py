@@ -1,2 +1,1 @@
-
-def melt(farm, y, x):
+o
