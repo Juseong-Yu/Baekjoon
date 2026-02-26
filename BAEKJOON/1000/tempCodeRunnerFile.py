@@ -1,2 +1,2 @@
 
-    if parents[x] == x:
+    if parents[x] == x: v
